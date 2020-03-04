@@ -1,6 +1,6 @@
-import React from 'react';
 import styles from './index.module.css';
 import { Row, Col, Menu, Icon } from 'antd';
+import Link from "next/link";
 
 const menuList = [
   { title: '首页', icon: 'home', key: 'home', },
@@ -24,11 +24,15 @@ const Header = () => {
           <span className={styles.subtitle}>前端小学生, 学习会上瘾</span>
         </Col>
         <Col xs={0} sm={0} md={10} lg={8} xl={6}>
-          <Menu className={styles.menu} mode='horizontal'>
+          <Menu className={styles.menu} mode='horizontal' defaultSelectedKeys={['home']}>
             {menuList.map(v => (
               <Menu.Item className={styles.menuItem} key={v.key}>
-                <Icon type={v.icon} />
-                {v.title}
+                <Link href={`/${v.key}`}>
+                  <a>
+                    <Icon type={v.icon} />
+                    {v.title}
+                  </a>
+                </Link>
               </Menu.Item>
             ))}
           </Menu>

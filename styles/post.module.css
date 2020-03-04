@@ -1,17 +1,17 @@
-.title{
-  font-size:1.3rem;
+.title {
+  font-size: 1.3rem;
   color: #1e90ff;
   padding: 0 0.5rem;
 }
-.desc{
-  padding:.5rem 0;
-  color:#AAA;
+.desc {
+  padding: 0.5rem 0;
+  color: #aaa;
 }
-.desc span{
+.desc span {
   display: inline-block;
   padding: 0 10px;
 }
-.content{
-  color:#777;
-  padding:.5rem;
+.content {
+  color: #777;
+  padding: 0.5rem;
 }

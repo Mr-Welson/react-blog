@@ -1,0 +1,17 @@
+.author{
+  text-align: center;
+  padding: 1rem;
+
+}
+.author div{
+  margin-bottom: 1rem;
+}
+.intro{
+  font-size:.8rem;
+  color: #999;
+}
+.link{
+  background-color: #999;
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
