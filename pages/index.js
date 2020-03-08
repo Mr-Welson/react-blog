@@ -1,8 +1,8 @@
 import Layout from '../components/Layout';
 import PostList from "../components/PostList";
-import axios from 'axios';
+import Service from '../service/index';
+
 const Home = ({ result }) => {
-  console.log(result);
   return (
     <Layout pageTitle='首页'>
       <PostList postList={result.data} />
@@ -11,7 +11,7 @@ const Home = ({ result }) => {
 }
 
 Home.getInitialProps = async () => {
-  const result = await axios('http://localhost:7001/default/getArticleList');
+  const result = await Service.post.getArticleList();
   return { result: result.data }
 }
 

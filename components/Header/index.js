@@ -1,12 +1,13 @@
+import { useState, useEffect } from 'react';
 import styles from './index.module.css';
 import { Row, Col, Menu, Icon } from 'antd';
 import Link from "next/link";
-
-const menuList = [
-  { title: '首页', icon: 'home', key: 'home', },
-  { title: '笔记', icon: 'edit', key: 'note', },
-  { title: '生活', icon: 'smile', key: 'life', }
-]
+import Service from '../../service';
+// const menuList = [
+//   { title: '首页', icon: 'home', key: 'home', },
+//   { title: '笔记', icon: 'edit', key: 'note', },
+//   { title: '生活', icon: 'smile', key: 'life', }
+// ]
 
 // xs: <576px响应式栅格。
 // sm：≥576px响应式栅格.
@@ -16,6 +17,15 @@ const menuList = [
 // xxl: ≥1600px响应式栅格.
 
 const Header = () => {
+  const [menuList, setMenuList] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await Service.post.getTypeList();
+      const menuList = result.data.data;
+      setMenuList(menuList)
+    }
+    fetchData();
+  }, [])
   return (
     <div className={styles.header}>
       <Row type='flex' justify='center'>
@@ -24,13 +34,21 @@ const Header = () => {
           <span className={styles.subtitle}>前端小学生, 学习会上瘾</span>
         </Col>
         <Col xs={0} sm={0} md={10} lg={8} xl={6}>
-          <Menu className={styles.menu} mode='horizontal' defaultSelectedKeys={['home']}>
-            {menuList.map(v => (
-              <Menu.Item className={styles.menuItem} key={v.key}>
-                <Link href={`/${v.key}`}>
+          <Menu className={styles.menu} mode='horizontal' defaultSelectedKeys={['index']}>
+            <Menu.Item className={styles.menuItem} key='index'>
+              <Link href='/'>
+                <a>
+                  <Icon type='home' />
+                  首页
+                </a>
+              </Link>
+            </Menu.Item>
+            {!!menuList.length && menuList.map(v => (
+              <Menu.Item className={styles.menuItem} key={v.id}>
+                <Link href={`/list?id=${v.id}`}>
                   <a>
                     <Icon type={v.icon} />
-                    {v.title}
+                    {v.name}
                   </a>
                 </Link>
               </Menu.Item>

@@ -1,15 +1,16 @@
-import { Breadcrumb, Icon, Affix } from "antd";
-import Markdown from "react-markdown";
-import MarkdownNavbar from "markdown-navbar";
 import Link from "next/link";
-
-import Layout from '../components/Layout';
-import Box from '../components/Box';
+import { Breadcrumb, Icon, Affix } from "antd";
+import Marked from "marked";
+import hljs from "highlight.js";
+import dayjs from 'dayjs';
 
 import styles from '../styles/post.module.css';
 import markdownStyle from '../styles/markdown.module.css'
-import axios from "axios";
-import dayjs from 'dayjs';
+
+import Service from '../service';
+import Layout from '../components/Layout';
+import Box from '../components/Box';
+import Tocify from '../components/Tocify/index.tsx';
 
 const BreadcrumbList = () => (
   <Breadcrumb>
@@ -36,8 +37,29 @@ const Title = ({ item = {} }) => {
   )
 }
 
+const tocify = new Tocify();
+const renderer = new Marked.Renderer();
+renderer.heading = (text, level) => {
+  const anchor = tocify.add(text, level);
+  return `<a id="${anchor}" href="#${anchor}"><h${level}>${text}</h${level}></a>`
+}
+
+Marked.setOptions({
+  renderer,
+  gfm: true, // 使用 github 样式 
+  pedantic: false, // markdown 容错处理
+  sanitize: false, // 不渲染markdown中的 html 标签
+  tables: true,
+  breaks: false,
+  smartLists: true, // 自动渲染列表
+  highlight: (code) => {
+    return hljs.highlightAuto(code).value
+  }
+})
+
 const Detail = ({ result }) => {
   const item = result.data[0];
+  const content = Marked(item.content || '');
   return (
     <Layout
       pageTitle='详情'
@@ -46,28 +68,22 @@ const Detail = ({ result }) => {
         <Affix offsetTop={5}>
           <Box className={markdownStyle.navBox}>
             <div className={markdownStyle.navTitle}>文章目录</div>
-            <MarkdownNavbar
-              className={markdownStyle.navbar}
-              source={item.content}
-              headingTopOffset={0} // 锚点距离顶部的距离
-              ordered={false} // 是否显示序号
-            />
+            {tocify && tocify.render()}
           </Box>
         </Affix>
       }
     >
       <Title item={item} />
-      <Markdown
-        source={item.content}
-        escapeHtml={false}
-      />
+      <Box>
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      </Box>
     </Layout>
   )
 }
 
 Detail.getInitialProps = async (context) => {
   const id = context.query.id;
-  const result = await axios('http://localhost:7001/default/getArticleById/' + id);
+  const result = await Service.post.getArticleById(id);
   return { result: result.data }
 }
 

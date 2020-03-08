@@ -1,8 +1,9 @@
 import { Breadcrumb } from "antd";
 import Link from "next/link";
+import Service from '../service';
 import Layout from '../components/Layout';
 import PostList from "../components/PostList";
-import axios from 'axios';
+
 
 const BreadcrumbList = () => (
   <Breadcrumb>
@@ -23,8 +24,9 @@ const MyList = ({result}) => {
   )
 }
 
-MyList.getInitialProps = async () => {
-  const result = await axios('http://localhost:7001/default/getArticleList');
+MyList.getInitialProps = async (context) => {
+  const id = context.query.id;
+  const result = await Service.post.getArticleListByTypeId(id);
   return { result: result.data }
 }
 

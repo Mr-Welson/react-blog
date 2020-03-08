@@ -8,6 +8,8 @@ Tip: 使用 TypeScript 语言编写的
 
 支持 `.js`,  `.jsx`,  `.ts`,  or  `.tsx ` 格式开发
 
+本文根据官方文档意译
+
 ## 预编译
 
 ### Static Generation

@@ -3,16 +3,6 @@ import Link from 'next/link';
 import styles from '../../styles/post.module.css';
 import dayjs from 'dayjs';
 
-// const postList = Array.from({ length: 20 }).map((v, k) => ({
-//   id: Math.random(),
-//   title: `笔记-${k}`,
-//   date: '2020/03/03 22:00',
-//   classify: '前端',
-//   count: Math.floor(Math.random() * 100 + 10),
-//   content: '文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容'
-// }))
-
-
 const PostList = ({ postList }) => {
   return (
     <List
