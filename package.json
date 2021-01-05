@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "antd": "^3.25.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "dayjs": "^1.8.21",
     "highlight.js": "^9.18.1",
     "lodash": "^4.17.15",
