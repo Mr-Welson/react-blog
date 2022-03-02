@@ -16,7 +16,7 @@ const BreadcrumbList = () => (
   </Breadcrumb>
 )
 
-const MyList = ({result}) => {
+const ArticleList = ({result}) => {
   return (
     <Layout pageTitle='笔记' Breadcrumb={BreadcrumbList}>
       <PostList postList={result.data}/>
@@ -24,11 +24,11 @@ const MyList = ({result}) => {
   )
 }
 
-MyList.getInitialProps = async (context) => {
+ArticleList.getInitialProps = async (context) => {
   const id = context.query.id;
   const result = await Service.post.getArticleListByTypeId(id);
   return { result: result.data }
 }
 
 
-export default MyList
+export default ArticleList

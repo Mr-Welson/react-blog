@@ -1,8 +1,6 @@
 # Note-Next.js
 
-[Next.js](https://nextjs.org/)  是一个轻量级的 React 服务端渲染应用框架。
-
-Tip: 使用 TypeScript 语言编写的
+[Next.js](https://nextjs.org/)  是一个使用 TypeScript 语言编写的，轻量级的 React 服务端渲染应用框架。
 
 仅支持 React 16 以上
 

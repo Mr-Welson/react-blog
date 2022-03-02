@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import layout from '../../styles/layout.module.css';
 import { Row, Col } from 'antd';
 import Header from '../Header';
@@ -6,18 +6,12 @@ import Footer from '../Footer';
 import Author from '../Author';
 import Ad from '../Ad';
 
-
-const Layout = ({ 
-  pageTitle,
-  children,
-  asideChildren,
-  Breadcrumb=null, 
-}) => {
+const Layout = ({ pageTitle, children, asideChildren, Breadcrumb = null }) => {
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
       <Row className={layout.main} type='flex' justify='center'>
@@ -26,6 +20,7 @@ const Layout = ({
           {children}
         </Col>
         <Col className={layout.right} xs={0} sm={0} md={8} lg={8} xl={6}>
+          {Date.now() * 1}
           <Author />
           <Ad />
           {asideChildren}
@@ -33,7 +28,7 @@ const Layout = ({
       </Row>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
