@@ -11,7 +11,7 @@
     "antd": "^3.25.3",
     "axios": "^0.19.2",
     "dayjs": "^1.8.21",
-    "highlight.js": "^9.18.1",
+    "highlight.js": "^10.4.1",
     "lodash": "^4.17.15",
     "marked": "^0.8.0",
     "next": "9.2.2",
