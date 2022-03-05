@@ -1,1 +1,1 @@
-export const api = 'http://localhost:7002';
+export const baseApi = 'http://localhost:7002/default';

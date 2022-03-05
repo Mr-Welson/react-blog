@@ -1,26 +1,26 @@
-import { api } from './config';
+import { baseApi } from './config';
 import axios from 'axios';
 
-const postApi = {
-  getArticleList: `${api}/default/getArticleList`,
-  getArticleById: `${api}/default/getArticleById/<id>`,
-  getTypeList: `${api}/default/getTypeList`,
-  getArticleListByTypeId: `${api}/default/getArticleListByTypeId/<id>`,
-}
+const api = {
+  getArticleList: `${baseApi}/getArticleList`,
+  getArticleById: `${baseApi}/getArticleById/<id>`,
+  getTypeList: `${baseApi}/getTypeList`,
+  getArticleListByTypeId: `${baseApi}/getArticleListByTypeId/<id>`,
+};
 
 const postService = {
   getArticleList() {
-    return axios(postApi.getArticleList);
+    return axios(api.getArticleList);
   },
   getArticleById(id) {
-    return axios(postApi.getArticleById.replace('<id>', id));
+    return axios(api.getArticleById.replace('<id>', id));
   },
   getTypeList() {
-    return axios(postApi.getTypeList);
+    return axios(api.getTypeList);
   },
   getArticleListByTypeId(id) {
-    return axios(postApi.getArticleListByTypeId.replace('<id>', id));
-  }
-}
+    return axios(api.getArticleListByTypeId.replace('<id>', id));
+  },
+};
 
 export default postService;
